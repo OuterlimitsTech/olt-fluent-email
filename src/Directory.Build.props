@@ -1,0 +1,49 @@
+<Project>
+  <PropertyGroup>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <Company>OuterLimits Technologies, Inc</Company>
+    <Product>OLT Exenstions for Fluent Email (jcamp version)</Product>
+    <Authors>Chris Straw</Authors>    
+    <RepositoryUrl>https://github.com/OuterlimitsTech/olt-fluent-email</RepositoryUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png</PackageIconUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <DebugType>embedded</DebugType>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <AssetsDirectory>../../../assets</AssetsDirectory>
+    <LangVersion>latest</LangVersion>
+		<PackageTags>email;fluent;fluentemail</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(AssetsDirectory)/fluentemail_logo_64x64.png" Pack="true" Visible="false" PackagePath=""/>
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
+
+  <PropertyGroup Condition="'$(TF_BUILD)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
+
+
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(MSBuildProjectName).xml</DocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <NoWarn>$(NoWarn);S110</NoWarn>
+    <NoWarn>$(NoWarn);S2436</NoWarn>
+    <NoWarn>$(NoWarn);S5332</NoWarn>
+    <NoWarn>$(NoWarn);S3925</NoWarn>
+  </PropertyGroup>
+
+</Project>
