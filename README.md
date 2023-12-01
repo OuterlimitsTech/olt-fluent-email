@@ -1,6 +1,8 @@
 ![Fluent Email Logo](https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png "FluentEmail")
 
-# Adds additional functionality and extensions for [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail)
+# Adds additional functionality and extensions using FluentEmail
+
+See [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail) for more information
 
 - [OLT.FluentEmail.SendGrid](src/Senders/OLT.FluentEmail.SendGrid) - Provides an Advanced SendGrid Sender with additional sender options
 - [OLT.FluentEmail.Extensions](src/Extensions/OLT.FluentEmail.Extensions) - Provides general extensions for FluentEmail (Whitelist)
