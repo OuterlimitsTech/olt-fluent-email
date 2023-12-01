@@ -1,6 +1,6 @@
-![alt text](https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png "FluentEmail")
+![Fluent Email Logo](https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png "FluentEmail")
 
-# Extensions for FluentEmail (jcamp version)
+# Adds additional functionality and extensions for [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail)
 
 - [OLT.FluentEmail.SendGrid](src/Senders/OLT.FluentEmail.SendGrid) - Provides an Advanced SendGrid Sender with additional sender options
 - [OLT.FluentEmail.Extensions](src/Extensions/OLT.FluentEmail.Extensions) - Provides general extensions for FluentEmail (Whitelist)
@@ -18,7 +18,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Send an Email Template
+Send an Email Template with additional properties SendGrid provides
 
 ```csharp
 public class EmailService {
@@ -30,9 +30,13 @@ public class EmailService {
    }
 
    public async Task Send() {    
+    var myTemplateJson = new MyTemplateClass();  
+
     var result = await _fluentEmail
         .To("somebody@gmail.com")                
-        .SendWithTemplateAsync("d-templateIdHere", null, opts =>
+
+        // NOTE: You do not have to provide template data, you can pass null
+        .SendWithTemplateAsync("d-templateIdHere", myTemplateJson, opts =>
         {
             opts.DisableClickTracking = true;
             opts.DisableOpenTracking = true;
@@ -50,11 +54,11 @@ public class EmailService {
 
 #### Issue I'm trying to resolve
 
-- I needed the ability to send email templates (i.e., SendGrid) from a test environment.  I could not use sandbox mode for SendGrid as I needed to see the actual template in my inbox.
-- You can not test templates using an SMTP testing service like mailtrap.io. as the email must travel through the provider's ecosystem.
-- By creating a whitelist concept, the would prevent any unwanted emails coming from a test system where a database was restored from production.
+- I needed to send email templates (i.e., SendGrid) from a test environment. I could not use sandbox mode for SendGrid as I needed to see the template in my inbox.
+- You can not test templates using an SMTP testing service like Mailtrap since the email must travel through the provider's ecosystem.
+- Creating a whitelist concept would prevent unwanted emails from coming from a test system where a database was restored from production.
 
-I created an extension that will pull out all the email addresses that are not in the domain or email address safe list if the production mode is set to false.
+If the production mode is false, the extension will pull out all the email addresses not in the domain or email address safe list.
 
 
 ```csharp
@@ -67,8 +71,12 @@ public class EmailService {
    }
 
    public async Task Send() {    
-    var productionMode = false;  //This would be configured by a environment variable or configuration setting.  Setting to true will bypass the whitelist check
 
+    // This would be configured by an environment variable or configuration setting.  
+    // Setting to true will bypass the whitelist check
+    var productionMode = false;  
+
+    // Any email address ending with these domains will be sent when productionMode is false
     var testDomain = new List<string>
     {
         "mydomain.com",
@@ -85,7 +93,7 @@ public class EmailService {
         .To("somebody@gmail.com")
         .To("safeemail@gmail.com")
 
-        //This must be called after all email addresses have been added, but before the Send method
+         // This must be called after all email addresses have been added, but before the Send method
         .WithWhitelist(new EmailWhitelistConfig(productionMode, testDomain, testEmailAddress))
 
         .SendWithTemplateAsync("d-templateIdHere", null);
