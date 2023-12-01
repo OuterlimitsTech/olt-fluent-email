@@ -3,9 +3,10 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <Company>OuterLimits Technologies, Inc</Company>
-    <Product>OLT Exenstions for Fluent Email (jcamp version)</Product>
+    <Product>OLT Libraries for Fluent Email (jcamp version)</Product>
     <Authors>Chris Straw</Authors>    
     <RepositoryUrl>https://github.com/OuterlimitsTech/olt-fluent-email</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/jcamp-code/FluentEmail</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png</PackageIconUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <DebugType>embedded</DebugType>

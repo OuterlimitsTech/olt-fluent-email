@@ -5,6 +5,9 @@
 ### Advanced SendGrid Email Sender for [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail)
 
 
-Send email via the SendGrid API 
+Current Extensions
 
-[Examples Here](https://github.com/OuterlimitsTech/olt-fluent-email)
+- **Whitelist** - _strips out any email address that does not match a specific list of domains and/or email address white list_
+
+
+[Examples Here](https://github.com/OuterlimitsTech/olt-fluent-email#extensions)
