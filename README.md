@@ -22,7 +22,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Send an Email Template with additional properties SendGrid provides
+Send an SendGrid Template with additional properties SendGrid provides
 
 ```csharp
 public class EmailService {
