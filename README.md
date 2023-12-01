@@ -1,6 +1,6 @@
 ![Fluent Email Logo](https://raw.githubusercontent.com/lukencode/FluentEmail/master/assets/fluentemail_logo_64x64.png "FluentEmail")
 
-# Adds additional functionality and extensions using FluentEmail
+# Adds functionality/extensions using FluentEmail
 
 See [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail) for more information
 
