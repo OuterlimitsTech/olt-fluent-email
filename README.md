@@ -31,28 +31,30 @@ public class EmailService {
 
    public async Task Send() {    
     var result = await _fluentEmail
-                .To("somebody@gmail.com")                
-                .SendWithTemplateAsync("d-templateIdHere", null, opts =>
-                {
-                    opts.DisableClickTracking = true;
-                    opts.DisableOpenTracking = true;
-                    opts.CustomArgs.Add("CustomArgName", "ArgValue");
-                    opts.UnsubscribeGroupId = 123456;
-                });
+        .To("somebody@gmail.com")                
+        .SendWithTemplateAsync("d-templateIdHere", null, opts =>
+        {
+            opts.DisableClickTracking = true;
+            opts.DisableOpenTracking = true;
+            opts.CustomArgs.Add("CustomArgName", "ArgValue");
+            opts.UnsubscribeGroupId = 123456;
+        });
    }
 }
 ```
 
 
-## Email Whitelist Extension 
+## Extensions
 
-### Issue I'm trying to resolve
+### Email Whitelist
 
-- I needed the ability to send email templates (i.e., from SendGrid) from a test environment.  I could not use sandbox mode for SendGrid
-- You can not test templates from provider using an SMTP testing service like mailtrap.io.  
-- This prevents a backup copy of a production database from sending emails to actual people from a test environment
+#### Issue I'm trying to resolve
 
-I created an extension that will pull out all the email addresses that are not in the domain or email address safe list.
+- I needed the ability to send email templates (i.e., SendGrid) from a test environment.  I could not use sandbox mode for SendGrid as I needed to see the actual template in my inbox.
+- You can not test templates using an SMTP testing service like mailtrap.io. as the email must travel through the provider's ecosystem.
+- By creating a whitelist concept, the would prevent any unwanted emails coming from a test system where a database was restored from production.
+
+I created an extension that will pull out all the email addresses that are not in the domain or email address safe list if the production mode is set to false.
 
 
 ```csharp
@@ -80,19 +82,13 @@ public class EmailService {
     };
 
     var result = await _fluentEmail
-                .To("somebody@gmail.com")
-                .To("safeemail@gmail.com")
+        .To("somebody@gmail.com")
+        .To("safeemail@gmail.com")
 
-                //This must be called after all email addresses have been added, but before the Send method
-                .WithWhitelist(new EmailWhitelistConfig(productionMode, testDomain, testEmailAddress))
+        //This must be called after all email addresses have been added, but before the Send method
+        .WithWhitelist(new EmailWhitelistConfig(productionMode, testDomain, testEmailAddress))
 
-                .SendWithTemplateAsync("d-templateIdHere", null, opts =>
-                {
-                    opts.DisableClickTracking = true;
-                    opts.DisableOpenTracking = true;
-                    opts.CustomArgs.Add("CustomArgName", "ArgValue");
-                    opts.UnsubscribeGroupId = 123456;
-                });
+        .SendWithTemplateAsync("d-templateIdHere", null);
    }
 }
 ```
