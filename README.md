@@ -4,8 +4,10 @@
 
 See [FluentEmail (jcamp version)](https://github.com/jcamp-code/FluentEmail) for more information
 
-- [OLT.FluentEmail.SendGrid](src/Senders/OLT.FluentEmail.SendGrid) - Provides an Advanced SendGrid Sender with additional sender options
-- [OLT.FluentEmail.Extensions](src/Extensions/OLT.FluentEmail.Extensions) - Provides general extensions for FluentEmail (Whitelist)
+| Library                                                                 | Description                                                         | Version                                                                                                                          |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| [OLT.FluentEmail.Extensions](src/Extensions/OLT.FluentEmail.Extensions) | Provides general extensions for FluentEmail (Whitelist)             | [![Nuget](https://img.shields.io/nuget/v/OLT.FluentEmail.Extensions)](https://www.nuget.org/packages/OLT.FluentEmail.Extensions) |
+| [OLT.FluentEmail.SendGrid](src/Senders/OLT.FluentEmail.SendGrid)        | Provides an Advanced SendGrid Sender with additional sender options | [![Nuget](https://img.shields.io/nuget/v/OLT.FluentEmail.SendGrid)](https://www.nuget.org/packages/OLT.FluentEmail.SendGrid)     |
 
 ## Advanced SendGrid Usage
 
@@ -20,7 +22,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-Send an Email Template with additional properties SendGrid provides
+Send an SendGrid Template with additional properties SendGrid provides
 
 ```csharp
 public class EmailService {
@@ -31,11 +33,11 @@ public class EmailService {
      _fluentEmail = fluentEmail;
    }
 
-   public async Task Send() {    
-    var myTemplateJson = new MyTemplateClass();  
+   public async Task Send() {
+    var myTemplateJson = new MyTemplateClass();
 
     var result = await _fluentEmail
-        .To("somebody@gmail.com")                
+        .To("somebody@gmail.com")
 
         // NOTE: You do not have to provide template data, you can pass null
         .SendWithTemplateAsync("d-templateIdHere", myTemplateJson, opts =>
@@ -49,7 +51,6 @@ public class EmailService {
 }
 ```
 
-
 ## Extensions
 
 ### Email Whitelist
@@ -62,7 +63,6 @@ public class EmailService {
 
 If the production mode is false, the extension will pull out all the email addresses not in the domain or email address safe list.
 
-
 ```csharp
 public class EmailService {
 
@@ -72,11 +72,11 @@ public class EmailService {
      _fluentEmail = fluentEmail;
    }
 
-   public async Task Send() {    
+   public async Task Send() {
 
-    // This would be configured by an environment variable or configuration setting.  
+    // This would be configured by an environment variable or configuration setting.
     // Setting to true will bypass the whitelist check
-    var productionMode = false;  
+    var productionMode = false;
 
     // Any email address ending with these domains will be sent when productionMode is false
     var testDomain = new List<string>
