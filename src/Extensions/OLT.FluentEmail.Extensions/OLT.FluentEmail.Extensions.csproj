@@ -5,7 +5,7 @@
 		<AssemblyTitle>Fluent Email - Extensions</AssemblyTitle>
 		<!--<Authors>Luke Lowrey;Ben Cull;Ricardo Santos;Github Contributors</Authors>-->
 		<PackageTags>$(PackageTags);extensions</PackageTags>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFrameworks>net8.0;net6.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<Nullable>enable</Nullable>-->
 	</PropertyGroup>
