@@ -1,17 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-		<Description>Send emails via SendGrid using their REST API</Description>
+		<TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
+		<Description>Extends jcamp.FluentEmail.SendGrid functionality to allow SendGrid include parameters</Description>
 		<AssemblyTitle>Fluent Email - SendGrid</AssemblyTitle>
 		<!--<Authors>Luke Lowrey;Ben Cull;Ricardo Santos;Github Contributors</Authors>-->
-		<PackageTags>$(PackageTags);sendgrid</PackageTags>
-		<TargetFramework>net6.0</TargetFramework>
+		<PackageTags>$(PackageTags);sendgrid</PackageTags>		
     <ImplicitUsings>enable</ImplicitUsings>
     <!--<Nullable>enable</Nullable>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="jcamp.FluentEmail.SendGrid" Version="3.7.0" />
+    <PackageReference Include="jcamp.FluentEmail.SendGrid" Version="4.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
 </Project>

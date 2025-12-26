@@ -26,5 +26,4 @@
             return whitelist.TrimEmails(email);
         }
     }
-
 }
