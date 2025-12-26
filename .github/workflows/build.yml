@@ -27,18 +27,21 @@ jobs:
       #     distribution: 'zulu'
       #     java-version: '17'
 
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+      - name: Setup .NET Core SDK
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 6.0.x
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
 
       - name: Get branch name
         id: branch-name
-        uses: tj-actions/branch-names@v7.0.6
+        uses: tj-actions/branch-names@v9
 
       # # https://www.seeleycoder.com/blog/sonarqube-with-github-actions-and-net-core-5-x/
       # # this process reads the .config -> dotnet-tools.json to restore packages

@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
+		<TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
 		<Description>General Extensions for FluentEmail (Whitelist)</Description>
 		<AssemblyTitle>Fluent Email - Extensions</AssemblyTitle>
 		<!--<Authors>Luke Lowrey;Ben Cull;Ricardo Santos;Github Contributors</Authors>-->
-		<PackageTags>$(PackageTags);extensions</PackageTags>
-		<TargetFrameworks>net8.0;net6.0</TargetFrameworks>
+		<PackageTags>$(PackageTags);extensions</PackageTags>		
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<Nullable>enable</Nullable>-->
 	</PropertyGroup>
 	
   <ItemGroup>
-    <PackageReference Include="jcamp.FluentEmail.Core" Version="3.7.0" />
+    <PackageReference Include="jcamp.FluentEmail.Core" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,6 +19,10 @@
       <PackagePath></PackagePath>
       <Pack>True</Pack>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 
 </Project>
